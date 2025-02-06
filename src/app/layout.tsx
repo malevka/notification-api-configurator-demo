@@ -1,4 +1,5 @@
-import StyledComponentsRegistry from "@/lib/registry";
+import ServiceWorkerSetup from "@/lib/ServiceWorkerSetup";
+import StyledComponentsRegistry from "@/lib/StyledComponentsRegistry";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import GlobalStyles from "../styles/GlobalStyles";
@@ -45,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
+        <ServiceWorkerSetup />
         <GlobalStyles />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>

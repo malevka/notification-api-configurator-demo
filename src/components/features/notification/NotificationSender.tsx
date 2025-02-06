@@ -11,10 +11,10 @@ const makeHint = (isSupported: boolean, permission?: NotificationPermission): st
     return "Уведомления отключены. Для тестирования, необходимо разрешить уведомления для данного сайта в настройках браузера";
   return "";
 };
-const sendNotification = () => {
+const sendNotification = (registration: ServiceWorkerRegistration) => {
   const title = store.title;
   const options = store.options ?? undefined;
-  new Notification(title, options);
+  registration.showNotification(title, options);
 };
 
 interface IPropsContainer {
@@ -30,32 +30,35 @@ const Container = styled.div<IPropsContainer>`
 `;
 const NotificationSender = observer(({ $margin }: IProps) => {
   const [isSupported, setIsSupported] = useState(false);
+  const [registration, setRegistration] = useState<ServiceWorkerRegistration>();
 
   const [permission, setPermission] = useState<NotificationPermission>();
   const hint = useMemo(() => makeHint(isSupported, permission), [isSupported, permission]);
+  const disabled = !isSupported || permission === "denied" || !store.title || !registration;
 
   const handleClick = async () => {
-    if (permission === "granted") {
-      sendNotification();
+    if (permission === "granted" && registration) {
+      sendNotification(registration);
       return;
     }
 
     const newPermissions = await Notification.requestPermission();
     setPermission(newPermissions);
-    if (newPermissions === "granted") sendNotification();
+    if (newPermissions === "granted" && registration) sendNotification(registration);
   };
   useEffect(() => {
-    if ("Notification" in window) {
+    if ("serviceWorker" in navigator && "Notification" in window) {
       setIsSupported(true);
       setPermission(Notification.permission);
+      navigator.serviceWorker.ready.then((registration) => setRegistration(registration));
     } else {
-      console.log("This browser does not support desktop notification");
+      console.log("This browser does not support serviceWorker or notification");
     }
   }, []);
 
   return (
     <Container $margin={$margin}>
-      <Button disabled={!isSupported || permission === "denied" || !store.title} onClick={handleClick} $width="100%">
+      <Button disabled={disabled} onClick={handleClick} $width="100%">
         Send notification
       </Button>
 
