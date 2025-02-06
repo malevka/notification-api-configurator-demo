@@ -14,12 +14,12 @@ export default function Home() {
   return (
     <Wrapper>
       <Header>
-        <h1>Notification Json Generator</h1>
+        <h1>Notification API Configurator</h1>
       </Header>
 
       <FlexContainer $wrap="wrap" $gap="2rem">
         <Section>
-          <Title $marginBottom="2rem">Notification API Configurator</Title>
+          <Title $marginBottom="2rem">Configurator</Title>
           <Editor />
         </Section>
         <Section>
