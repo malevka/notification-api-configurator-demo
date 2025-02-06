@@ -28,6 +28,13 @@ interface IProps {
 const Container = styled.div<IPropsContainer>`
   margin: ${(props) => props.$margin || "0"};
 `;
+
+const Hint = styled.p`
+  margin-top: 0.25rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-error);
+`;
 const NotificationSender = observer(({ $margin }: IProps) => {
   const [isSupported, setIsSupported] = useState(false);
   const [registration, setRegistration] = useState<ServiceWorkerRegistration>();
@@ -62,7 +69,7 @@ const NotificationSender = observer(({ $margin }: IProps) => {
         Send notification
       </Button>
 
-      <p>{hint}</p>
+      <Hint>{hint}</Hint>
     </Container>
   );
 });

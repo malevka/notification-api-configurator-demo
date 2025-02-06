@@ -6,23 +6,11 @@ import FlexContainer from "../../ui/FlexContainer";
 const Output = observer(() => {
   return (
     <Wrapper>
-      {store.title && (
-        <>
-          <pre>const title = {store.title};</pre>
-        </>
-      )}
+      {store.title && <Paragraph>const title = {store.title};</Paragraph>}
       {store.options && (
         <FlexContainer>
-          <pre>const options =</pre>
-          <pre>{JSON.stringify(store.options, null, 2)}; </pre>
+          <Paragraph>const options = {JSON.stringify(store.options, null, 2)}; </Paragraph>
         </FlexContainer>
-      )}
-      {store.title && (
-        <>
-          <br />
-          <br />
-          <pre>{store.options ? "new Notification(title, options)" : "new Notification(title)"}</pre>
-        </>
       )}
     </Wrapper>
   );
@@ -31,8 +19,12 @@ const Output = observer(() => {
 const Wrapper = styled.div`
   background-color: var(--output-background);
   border-radius: 0.25rem;
-  padding: 1rem;
-  min-height: 20rem;
+  padding: 2.5rem;
+  min-height: 19.25rem;
+  height: 1px;
 `;
 
+const Paragraph = styled.pre`
+  margin-bottom: 1rem;
+`;
 export default Output;

@@ -6,7 +6,6 @@ import { store } from "../../../stores/store";
 
 import { observer } from "mobx-react-lite";
 import Button from "../../ui/Button";
-import FlexContainer from "../../ui/FlexContainer";
 
 interface IEditorInput {
   title: string;
@@ -48,16 +47,18 @@ const Editor = observer(() => {
       <StyledButton type="primary">Styled Button</StyledButton> */}
         {/* <button>Generate</button> */}
       </form>
-      <FlexContainer $justifyContent="space-between">
-        <Button onClick={handleSubmit(onSubmit)}>Generate config</Button>
-        <Button
-          onClick={() => {
-            reset();
-            handleSubmit(onSubmit)();
-          }}>
-          Reset
-        </Button>
-      </FlexContainer>
+
+      <Button onClick={handleSubmit(onSubmit)} $width="100%" $margin="0 0 1.5rem 0">
+        Generate config
+      </Button>
+      <Button
+        onClick={() => {
+          reset();
+          handleSubmit(onSubmit)();
+        }}
+        $width="100%">
+        Reset
+      </Button>
     </>
   );
 });
