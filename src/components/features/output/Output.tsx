@@ -8,8 +8,6 @@ const Output = observer(() => {
     <Wrapper>
       {store.title && (
         <>
-          <pre>/* Notification params */</pre>
-          <br />
           <pre>const title = {store.title};</pre>
         </>
       )}
@@ -22,9 +20,6 @@ const Output = observer(() => {
       {store.title && (
         <>
           <br />
-          <br />
-          <br />
-          <pre>/* Send notification */</pre>
           <br />
           <pre>{store.options ? "new Notification(title, options)" : "new Notification(title)"}</pre>
         </>
