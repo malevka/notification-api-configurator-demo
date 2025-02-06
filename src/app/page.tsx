@@ -25,7 +25,7 @@ export default function Home() {
         <Section>
           <Title $marginBottom="2rem">Output</Title>
           <Output />
-          <NotificationSender $margin="1rem 0 0 0" />
+          <NotificationSender $margin="1.5rem 0 0 0" />
         </Section>
       </FlexContainer>
     </Wrapper>
