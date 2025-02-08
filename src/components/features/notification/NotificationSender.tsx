@@ -14,7 +14,10 @@ const makeHint = (isSupported: boolean, permission?: NotificationPermission): st
 const sendNotification = (registration: ServiceWorkerRegistration) => {
   const title = store.title;
   const options = store.options ?? undefined;
-  registration.showNotification(title, options);
+  registration
+    .showNotification(title, options)
+    .then(() => console.log("success"))
+    .catch((error) => console.log(error));
 };
 
 interface IPropsContainer {
