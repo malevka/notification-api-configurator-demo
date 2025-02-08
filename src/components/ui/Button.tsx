@@ -11,10 +11,10 @@ const Button = styled.button<IProps>`
   border: 1px solid var(--button-primary-bg);
   background-color: var(--button-primary-bg);
   color: var(--button-primary-color);
-  height: 2rem;
+  height: auto;
   width: ${(props) => props.$width || "auto"};
   border-radius: 4px;
-  padding: 0 1rem;
+  padding: 0.75rem 1rem;
   margin: ${(props) => props.$margin || "0"};
   font-size: 1.25rem;
 
